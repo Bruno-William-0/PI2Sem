@@ -38,4 +38,4 @@ const slides = document.querySelectorAll('.slide');
       
       setInterval(() => {
         nextSlide();
-      }, 5000);
+      }, 7000);
