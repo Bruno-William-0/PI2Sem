@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="./assets/icons8-pegada-de-gato-100.png"/>
+    <title>Agendamento Pi</title>
+    <style>
+        h1 {
+  text-align: center;
+}
+
+form {
+  max-width: 400px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  margin-top: 10px;
+}
+
+input {
+  padding: 5px;
+  margin: 5px 0;
+}
+
+button {
+  margin-top: 10px;
+  padding: 5px;
+}
+/* table{
+    width:467;
+    border: 1px;
+}
+#nome{
+    width: 101;
+    height: 40;
+}
+#email{
+    width: 113;
+}
+#data{
+    width: 100;
+}
+#hora{
+    width: 100;
+} */
+    </style>
+</head>
+<body>
+
+    <a href="./index2.html"><button>Voltar</button></a>
+
+    <h1>Agendar:</h1>
+
+    <form id="agendaPet" action="para onde vai enviar" method="get">
+        <div>
+            <label for="nomePet">Nome do pet*:</label><br>
+            <input type="text" id="nome" name="name" placeholder="Digite o nome do seu pet" required />
+        </div>
+        <div>
+            <label for="email">E-mail*:</label><br>
+            <input type="email" id="email" name="e-mail" placeholder="Digite seu e-mail aqui" required />
+        </div>
+        <div>
+            <label for="data">Data do agendamento*:</label><br>
+            <input type="date" name="data" id="data" value="Data">
+        </div>
+        <div>
+            <label for="hora">Horário do agendamento*:</label><br>
+            <input type="time" name="dataHora" id="hora" value="Data e Hora"><br>
+            <input type="submit" name="enviar" id="enviar" value="Enviar">
+        </div>
+    </form>
+
+    <h1>Agendamentos</h1>
+    <table align="center" width="600" border="1px">
+      <thead>
+        <tr>
+          <th width="140" height="40">Nome</th>
+          <th width="180">Email</th>
+          <th width="120">Data</th>
+          <th width="70">Horário</th>
+        </tr>
+      </thead>
+      <tbody id="table-body">
+        <tr id="rowBody">
+        </tr>
+      </tbody>
+    </table>
+    
+    <script src="./app.js">
+
+    </script>
+</body>
+</html>
