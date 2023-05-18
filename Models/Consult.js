@@ -1,6 +1,6 @@
 export class Consult {
     constructor(id, client, employer, date, obs) {
-        this.id = id
+        this.id = id;
         this.client = client;
         this.employer = employer;
         this.date = date;
@@ -45,7 +45,7 @@ export const findAll = () => {
 }
 
 export const dbConsult = [
-    new Consult(1, "Guilherme", "Maria", "2023-05-12", "Observações da consulta 1"),
+    new Consult("Guilherme", "Maria", "2023-05-12", "Observações da consulta 1"),
 ]
 //
 
