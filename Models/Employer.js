@@ -9,6 +9,36 @@ export class Employer {
     }
 }
 
+export const update = (id, employer) => {
+    const employerToUpdate = findByPk(id)
+    if(!employerToupdate) {
+        return false
+    }
+
+    const index = dbEmployer.indexOf(employerToUpdate)
+    dbEmployer[index] = employer
+    return true
+}
+
+export const destroy = (id) => {
+    const employer = findByPk(id)
+    if(!employer) {
+        return false
+    }
+    const index = dbEmployer.indexOf(employer)
+    dbEmployer.splice(index, 1)
+    return true
+}
+
+export const findByPk = (id) => {
+    return dbEmployer.find(employer => employer.id ===id)
+}
+
+export const create = (employer) => {
+    employer.id = dbEmployer.length + 1
+    dbEmployer.push(employer)
+}
+
 export const getEmployer = () => {
     return dbEmployer;
 }
