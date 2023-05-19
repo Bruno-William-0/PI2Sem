@@ -4,10 +4,10 @@ import EmployerController from '../Controllers/EmployerController.js'
 const EmployerRouter = express.Router();
 
 EmployerRouter.get('/', EmployerController.getEmployer);
-Employerrouter.post('/', EmployerController.createEmployer)
-Employerrouter.get('/:id', EmployerController.getEmployerById)
-Employerrouter.delete('/:id', EmployerController.destroyEmployer)
-Employerrouter.put('/:id', EmployerController.updateEmployer)
+EmployerRouter.post('/', EmployerController.createEmployer)
+EmployerRouter.get('/:id', EmployerController.getEmployerById)
+EmployerRouter.delete('/:id', EmployerController.destroyEmployer)
+EmployerRouter.put('/:id', EmployerController.updateEmployer)
 
 //EmployerRouter.delete();
 

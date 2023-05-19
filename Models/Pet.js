@@ -31,7 +31,7 @@ export const destroy = (id) => {
 
 export const findByPk = (id) => {
     return dbPet.find(pet => pet.id === id)
-}
+}   
 
 export const create = (consult) => {
     pet.id = dbPet.length + 1

@@ -9,7 +9,7 @@
         }
     }
 
-    export const update = (id, consult) => {
+    export const update = (id, client) => {
         const clientToUpdate= findByPk(id)
         if(!clientToUpdate) {
             return false
