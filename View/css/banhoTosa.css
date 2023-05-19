@@ -70,10 +70,11 @@ h1 {
     padding: 50px;
     background-color: #f9f9f9;
     text-align: center;
-    background-image: url(/img/estabelecimento.png);
+    background-image: url(../img/estabelecimento.png);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+    background-attachment: fixed;
   }
   
   .servicos-banho h2 {
@@ -291,10 +292,11 @@ footer {
 /* Estilos para o banner principal Hotel */
 
 .banner {
-  background-image: url("/img/melhor-brinquedo-para-filhote-de-cachorro.png");
+  background-image: url("../img/melhor-brinquedo-para-filhote-de-cachorro.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  background-attachment: fixed;
   height: 400px;
   display: flex;
   justify-content: center;

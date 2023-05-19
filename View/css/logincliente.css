@@ -5,7 +5,8 @@
     box-sizing: border-box;
   }
   
-  body {
+  body 
+  {
     font-family: 'Roboto', sans-serif;
     font-size: 16px;
     line-height: 1.5;
@@ -14,7 +15,8 @@
   }
   
   /* Cabeçalho */
-  header {
+  header 
+{
     background-color: #333;
     box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.2);
     display: flex;
@@ -26,15 +28,17 @@
     left: 0;
     right: 0;
     z-index: 1000;
-  }
+}
 
-nav{
+nav
+{
   color: white;
   font-weight: bold;
   background-color: #333;
 }
 
-nav a{
+nav a
+{
   color: white;
   text-decoration: none;
   padding: 40px;
@@ -64,6 +68,10 @@ h1 {
     text-align: center;
     color: #ffffff;
   }
+  .button{
+    display: inline-block;
+    justify-items: center;
+  }
 
   label
   {
@@ -78,7 +86,13 @@ h1 {
     display: flex;
     justify-content: center;
   }
+  .link-cadastro
+  {
+    display: flex;
+    justify-content: center;
+    text-decoration: none;
 
+  }
   /* Serviços */
   .servicos-banho {
     padding: 50px;
@@ -251,7 +265,7 @@ h1 {
   
   .control.active {
     background-color: white;
-  }s
+  }
 
 
   /* Rodapé */
@@ -262,37 +276,14 @@ footer {
     text-align: center;
     }
     
-    footer p {
+    footer p 
+    {
     margin-bottom: 20px;
     }
 
 
-    
-
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    /*Estilos Hotel*/    
-
-.header-hotel {
+.header
+{
   background-color: #A31CCC;
   color: #fff;
   font-family: Arial, Helvetica, sans-serif;
@@ -300,48 +291,6 @@ footer {
   text-align: center;
   font-size: 36px;
   font-weight: bold;
-}
-
-/* Estilos para o banner principal Hotel */
-
-.banner {
-  background-image: url("../img/melhor-brinquedo-para-filhote-de-cachorro.png");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-attachment: fixed;
-  height: 400px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  font-size: 36px;
-  color: #fff;
-}
-
-.banner h2 {
-  font-weight: bold;
-  margin-bottom: 20px;
-  text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
-}
-
-
-.banner button{
-    background-color: #A31CCC;
-    color: #fff;
-    cursor: pointer;
-    font-weight: bold;
-    font-size: 20px;
-    transition: background-color 0.2s ease;
-    border: none;
-    width: 150px;
-    height: 35px;
-    border-radius: 5px;
-    transition: background-color 0.2s ease;
-}
-
-.banner button:hover{
-  background-color: #62107b;
 }
 
 

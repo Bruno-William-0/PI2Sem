@@ -1,6 +1,5 @@
 export class Consult {
-    constructor(id, client, employer, date, obs) {
-        this.id = id;
+    constructor(client, employer, date, obs) {
         this.client = client;
         this.employer = employer;
         this.date = date;

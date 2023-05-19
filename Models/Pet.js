@@ -1,5 +1,3 @@
-import { Consult, dbConsult, findByPk } from "./Consult";
-
 export class Pet {
     constructor(name, speec, breed, age) {
         this.name = name;
@@ -45,5 +43,5 @@ export const getPets = () => {
 }
 
 export const dbPet = [
-    new Pet("Rex", "Cachorro", "Vira-lata", 5),
+    new Pet("Rex", "Cachorro", "Vira-lata", 5)
 ];
