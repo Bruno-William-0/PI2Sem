@@ -1,4 +1,3 @@
-import { findByPk } from "./Consult"
 
     export class Client {
         constructor(name,email,phone, address, password){
