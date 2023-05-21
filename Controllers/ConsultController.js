@@ -1,8 +1,9 @@
-import { Consult, findAll, create, findByPk, destroy, update } from "../Models/Consult.js";
+import Consult from "../Models/Consult.js";
 
 class ConsultController {
-  static getConsult(req, res) {
-    res.json(findAll());
+  static async list(req, res) {
+    const consult = await Consult.findAll()
+    res.json(consult);
   }
 
   static createConsult(req, res) {
@@ -12,14 +13,17 @@ class ConsultController {
       return
     }
 
-    const consult = new Consult(client, employer, date, obs)
-    create(consult)
-    res.json(consult)
+    const createdConsult = Consult.create({ client, employer, date, obs })
+    res.status(201).json(createdConsult)
+
+    // const consult = new Consult(client, employer, date, obs)
+    // create(consult)
+    // res.json(consult)
   }
 
-  static getConsultById(req, res) {
+  static async getConsultById(req, res) {
     const id = parseInt(req.params.id)
-    const consult = findByPk(id)
+    const consult = await Consult.findByPk(id)
     if (!consult) {
       res.status(400).json({ error: 'Consulta não encontrada.' })
       return
@@ -27,20 +31,20 @@ class ConsultController {
     res.json(consult)
   }
 
-  static destroyConsult(req, res) {
+  static async destroyConsult(req, res) {
     const id = parseInt(req.params.id)
-    const consult = findByPk(id)
+    const consult = await Consult.findByPk(id)
     if (!consult) {
       res.status(404).json({ error: 'Consulta não encontrada.' })
       return
     }
-    destroy(id)
+    await Consult.destroy({ where: { id: Consult.id } })
     res.json({ message: 'Consulta removida com sucesso.' })
   }
 
-  static updateConsult(req, res) {
+  static async updateConsult(req, res) {
     const id = parseInt(req.params.id)
-    const consult = findByPk(id)
+    const consult = await Consult.findByPk(id)
     if (!consult) {
       res.status(404).json({ error: 'Consulta não encontrada.' })
       return
@@ -59,13 +63,13 @@ class ConsultController {
     //   return
     // }
 
-    consult.client = client
-    consult.employer = employer
-    consult.date = date
-    consult.obs = obs
+    // consult.client = client
+    // consult.employer = employer
+    // consult.date = date
+    // consult.obs = obs
 
-    update(id, consult)
-    res.json(consult)
+    const updateConsult = await Consult.update({ client, employer, date, obs }, { where: { id: consult.id } })
+    res.json(updateConsult)
   }
 }
 

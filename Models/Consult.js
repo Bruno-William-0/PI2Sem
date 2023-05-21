@@ -1,58 +1,74 @@
-export class Consult {
-    constructor(id, client, employer, date, obs) {
-        this.id = id;
-        this.client = client;
-        this.employer = employer;
-        this.date = date;
-        this.obs = obs;
+import { Sequelize } from "sequelize";
+import db from "../db.js"
+
+ const Consult = db.define('consult',{
+    id:{
+        type: Sequelize.INTEGER,
+        autoIncrement: true,
+        primaryKey: true
+    },
+    name: {
+        type: Sequelize.STRING,
+        allowNull: false
+    },
+    email:{
+        type: Sequelize.STRING,
+        allowNull: false
+    },
+    telefone:{
+        type: Sequelize.STRING,
+        allowNull: false
     }
-}
+ })
 
-//
-export const update = (id, consult) => {
-    const consultToUpdate = findByPk(id)
-    if (!consultToUpdate) {
-        return false
-    }
+ export default Consult
 
-    const index = dbConsult.indexOf(consultToUpdate)
-    dbConsult[index] = consult
-    return true
-}
+// export class Consult {
+//     constructor(id, client, employer, date, obs) {
+//         this.id = id;
+//         this.client = client;
+//         this.employer = employer;
+//         this.date = date;
+//         this.obs = obs;
+//     }
+// }
 
-export const destroy = (id) => {
-    const consult = findByPk(id)
-    if (!consult) {
-        return false
-    }
+// //
+// export const update = (id, consult) => {
+//     const consultToUpdate = findByPk(id)
+//     if (!consultToUpdate) {
+//         return false
+//     }
 
-    const index = dbConsult.indexOf(consult)
-    dbConsult.splice(index, 1)
-    return true
-}
+//     const index = dbConsult.indexOf(consultToUpdate)
+//     dbConsult[index] = consult
+//     return true
+// }
 
-export const findByPk = (id) => {
-    return dbConsult.find(consult => consult.id === id)
-}
+// export const destroy = (id) => {
+//     const consult = findByPk(id)
+//     if (!consult) {
+//         return false
+//     }
 
-export const create = (consult) => {
-    consult.id = dbConsult.length + 1
-    dbConsult.push(consult)
-}
+//     const index = dbConsult.indexOf(consult)
+//     dbConsult.splice(index, 1)
+//     return true
+// }
 
-export const findAll = () => {
-    return dbConsult
-}
+// export const findByPk = (id) => {
+//     return dbConsult.find(consult => consult.id === id)
+// }
 
-export const dbConsult = [
-    new Consult("Guilherme", "Maria", "2023-05-12", "Observações da consulta 1"),
-]
-//
+// export const create = (consult) => {
+//     consult.id = dbConsult.length + 1
+//     dbConsult.push(consult)
+// }
 
-// export const getConsult = () => {
-//     return dbConsult;
+// export const findAll = () => {
+//     return dbConsult
 // }
 
 // export const dbConsult = [
-//     new Consult("1", "Guilherme", "Maria", "2023-05-12", "Observações da consulta 1"),
-// ];
+//     new Consult(1, "Guilherme", "Maria", "2023-05-12", "Observações da consulta 1"),
+// ]
