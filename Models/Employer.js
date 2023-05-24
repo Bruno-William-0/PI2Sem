@@ -1,25 +1,29 @@
-import { pool } from "./DB.js";
+import { pool } from "./DBCon.js";
 
 export class Employer {
-    constructor(name, email, phone, adress, password,employerfunction) {
+    constructor(name, birth, address, phone, email, employerfunction) {
         this.name = name;
+        this.birth = birth;
+        this.phone = phone;
         this.email = email;
-        this.phone= phone;
-        this.adress = adress;
-        this.password = password;
-        this.employerfunction = employerfunction
+        this.employerfunction = employerfunction;
     }
 }
 
 export const update = (id, employer) => {
-    const employerToUpdate = findByPk(id)
-    if(!employerToupdate) {
-        return false
-    }
-
-    const index = dbEmployer.indexOf(employerToUpdate)
-    dbEmployer[index] = employer
-    return true
+    const query = `UPDATE Funcionario SET nome = $1, nascimento = $2, telefone = $3, email = $4, funcao = $5 WHERE id = $6`;
+    const values = [employer.name, employer.birth, employer.phone, employer.email, employer.employerfunction];
+  
+    pool.query(query, values, (err, result) => {
+      if (err) {
+        console.error('Erro ao executar a consulta:', err);
+        return false;
+      } else {
+        const rowsAffected = result.rowCount;
+        return rowsAffected > 0;
+      }
+    });
+    return ture
 }
 
 export const destroy = (id) => {
@@ -37,12 +41,29 @@ export const findByPk = (id) => {
 }
 
 export const create = (employer) => {
-    employer.id = dbEmployer.length + 1
-    dbEmployer.push(employer)
+    const query = 'INSERT INTO Funcionaro (nome, nascimento, telefone, email, funcao) VALUES ($1, $2, $3, $4, $5)';
+    const values = [employer.name, employer.birth, employer.phone, employer.email, employer.employerfunction];
+
+    pool.query(query, values, (err, result) => {
+        if (err) {
+          console.error('Erro ao executar a consulta:', err);
+        } else {
+          console.log('Funcionário criado com sucesso');
+        }
+      });
 }
 
 export const getEmployer = () => {
-    return dbEmployer;
+    const query = 'SELECT * FROM Funcionario';
+
+  pool.query(query, (err, result) => {
+    if (err) {
+      console.error('Erro ao executar a consulta:', err);
+    } else {
+      console.log('Clientes encontrados:');
+      return result.rows
+    }
+  });
 }
 
 export const dbEmployer = [

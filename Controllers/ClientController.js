@@ -31,7 +31,7 @@ class ClientController {
 
   static updateClient(req, res) {
     const id = parseInt(req.params.id);
-    
+    const client = findByPk(id);
     const { name, email, phone, address, password } = req.body;
     if (!name || !email || !phone || !address || !password) {
       res.status(400).json({ error: 'Nome, email, telefone, endereço e senha são obrigatórios' });
@@ -47,6 +47,9 @@ class ClientController {
     update(id, client);
     res.json(client);
   }
+
+  // ...
 }
+
 
 export default ClientController;
