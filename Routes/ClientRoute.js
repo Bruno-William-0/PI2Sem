@@ -7,7 +7,7 @@ ClientRouter.get('/', ClientController.getClient)
 ClientRouter.post('/', ClientController.createClient)
 ClientRouter.get('/:id', ClientController.getClientById)
 ClientRouter.delete('/:id', ClientController.destroyClient)
-ClientRouter.put('/:id', )
+ClientRouter.put('/:id', ClientController.updateClient)
 //ContatoRouter.delete()
 
 export default ClientRouter

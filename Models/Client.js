@@ -1,49 +1,111 @@
+import pkg from 'pg';
+const { Pool } = pkg;
 
-    export class Client {
-        constructor(name,email,phone, address, password){
-            this.name = name
-            this.email = email
-            this.phone = phone
-            this.address = address
-            this.password = password
-        }
+
+const dbConfig = {
+  user: 'wluhqrnx',
+  password: 'vulNbtDhjc-SVqibvTMv1CX4dL7Tj3bs',
+  host: 'kesavan.db.elephantsql.com',
+  port: 5432, // Porta padrão do PostgreSQL é 5432
+  database: 'wluhqrnx',
+};
+
+
+// const dbConfig = {
+//   user: 'postgres',
+//   password: '123',
+//   host: 'localhost',
+//   port: 5432, // Porta padrão do PostgreSQL é 5432
+//   database: 'postgres',
+// };
+
+
+const pool = new Pool(dbConfig);
+export class Client {
+  constructor(name, email, phone, address, password) {
+    this.name = name;
+    this.email = email;
+    this.phone = phone;
+    this.address = address;
+    this.password  = password;
+  }
+}
+
+export const update = (id, client) => {
+  const query = `UPDATE Usuario SET nome = $1, email = $2, telefone = $3, endereco = $4, senha = $5 WHERE id = $6`;
+  const values = [client.name, client.email, client.phone, client.address, client.password, id];
+
+  pool.query(query, values, (err, result) => {
+    if (err) {
+      console.error('Erro ao executar a consulta:', err);
+      return false;
+    } else {
+      const rowsAffected = result.rowCount;
+      return rowsAffected > 0;
     }
+  });
+};
 
-    export const update = (id, client) => {
-        const clientToUpdate= findByPk(id)
-        if(!clientToUpdate) {
-            return false
-        }
+export const destroy = (id) => {
+  const query = 'DELETE FROM Usuario WHERE id = $1';
+  const values = [id];
 
-        const index = dbClient.indexOf(clientToUpdate)
-        dbClient[index] = client
-        return true 
+  pool.query(query, values, (err, result) => {
+    if (err) {
+      console.error('Erro ao executar a consulta:', err);
+      return false;
+    } else {
+      const rowsAffected = result.rowCount;
+      return rowsAffected > 0;
     }
+  });
+};
 
-    export const destroy = (id) => {
-        const client = findByPk(id)
-        if(!client){
-            return false
-        }
+export const findByPk = (id) => {
+  const query = 'SELECT * FROM Usuario WHERE id = $1';
+  const values = [id];
 
-        const index = dbClient.indexOf(client)
-        dbClient.splice(index, 1)
-        return true
+  return new Promise((resolve, reject) => {
+    pool.query(query, values, (err, result) => {
+      if (err) {
+        console.error('Erro ao executar a consulta:', err);
+        reject(err);
+      } else {
+        const client = result.rows[0];
+        resolve(client);
+      }
+    });
+  });
+};
+
+export const create = (client) => {
+  const query = 'INSERT INTO Usuario (nome, telefone, endereco, email, senha) VALUES ($1, $2, $3, $4, $5)';
+  const values = [client.name, client.phone, client.address, client.email, client.password];
+
+  pool.query(query, values, (err, result) => {
+    if (err) {
+      console.error('Erro ao executar a consulta:', err);
+    } else {
+      console.log('Cliente criado com sucesso');
     }
+  });
+};
 
-    export const findByPk = (id) => {
-        return dbClient.find(client => client.id === id)
+
+export const findClient = () => {
+  const query = 'SELECT * FROM Usuario';
+
+  pool.query(query, (err, result) => {
+    if (err) {
+      console.error('Erro ao executar a consulta:', err);
+    } else {
+      console.log('Clientes encontrados:');
+      return result.rows
     }
+  });
+};
 
-    export const create = (client) => {
-        client.id = dbClient.length + 1
-        dbClient.push(client)
-    }
 
-    export const findClient = () => {
-        return dbClient
-    }
-
-    export const dbClient = [
-        new Client('1',"Guilherme","email@gmail.com","rua", '1234'),
-    ]
+export const dbClient = [
+  new Client( 'Guilherme', 'email@gmail.com', '40028922','rua', '1234'),
+];
