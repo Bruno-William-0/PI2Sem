@@ -1,3 +1,5 @@
+import { pool } from "./DB.js";
+
 export class Employer {
     constructor(name, email, phone, adress, password,employerfunction) {
         this.name = name;

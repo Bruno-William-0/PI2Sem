@@ -1,26 +1,5 @@
-import pkg from 'pg';
-const { Pool } = pkg;
+import { pool } from "./DB.js";
 
-
-const dbConfig = {
-  user: 'wluhqrnx',
-  password: 'vulNbtDhjc-SVqibvTMv1CX4dL7Tj3bs',
-  host: 'kesavan.db.elephantsql.com',
-  port: 5432, // Porta padrão do PostgreSQL é 5432
-  database: 'wluhqrnx',
-};
-
-
-// const dbConfig = {
-//   user: 'postgres',
-//   password: '123',
-//   host: 'localhost',
-//   port: 5432, // Porta padrão do PostgreSQL é 5432
-//   database: 'postgres',
-// };
-
-
-const pool = new Pool(dbConfig);
 export class Client {
   constructor(name, email, phone, address, password) {
     this.name = name;
