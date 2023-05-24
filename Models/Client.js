@@ -1,4 +1,4 @@
-import { pool } from "./DB.js";
+import { pool } from "./DBCon.js";
 
 export class Client {
   constructor(name, email, phone, address, password) {
