@@ -1,74 +1,88 @@
-import { Sequelize } from "sequelize";
-import db from "../db.js"
+import { pool } from "./DBCon.js";
 
- const Consult = db.define('consult',{
-    id:{
-        type: Sequelize.INTEGER,
-        autoIncrement: true,
-        primaryKey: true
-    },
-    name: {
-        type: Sequelize.STRING,
-        allowNull: false
-    },
-    email:{
-        type: Sequelize.STRING,
-        allowNull: false
-    },
-    telefone:{
-        type: Sequelize.STRING,
-        allowNull: false
+export class Consult {
+    constructor(client, employer, date, obs) {
+        this.client = client;
+        this.employer = employer;
+        this.date = date;
+        this.obs = obs;
     }
- })
+}
 
- export default Consult
+export const update = (id, consult) => {
+  const query = `UPDATE Consulta SET cliente/usuario = $1, funcionario = $2, data = $3, observação = $4 WHERE id = $6`;
+  const values = [consult.client, consult.employer, consult.date, consult.obs, id];
 
-// export class Consult {
-//     constructor(id, client, employer, date, obs) {
-//         this.id = id;
-//         this.client = client;
-//         this.employer = employer;
-//         this.date = date;
-//         this.obs = obs;
-//     }
-// }
+  pool.query(query, values, (err, result) => {
+    if (err) {
+      console.error('Erro ao executar a consulta:', err);
+      return false;
+    } else {
+      const rowsAffected = result.rowCount;
+      return rowsAffected > 0;
+    }
+  });
+};
 
-// //
-// export const update = (id, consult) => {
-//     const consultToUpdate = findByPk(id)
-//     if (!consultToUpdate) {
-//         return false
-//     }
+export const destroy = (id) => {
+  const query = 'DELETE FROM Consulta WHERE id = $1';
+  const values = [id];
 
-//     const index = dbConsult.indexOf(consultToUpdate)
-//     dbConsult[index] = consult
-//     return true
-// }
+  pool.query(query, values, (err, result) => {
+    if (err) {
+      console.error('Erro ao executar a consulta:', err);
+      return false;
+    } else {
+      const rowsAffected = result.rowCount;
+      return rowsAffected > 0;
+    }
+  });
+};
 
-// export const destroy = (id) => {
-//     const consult = findByPk(id)
-//     if (!consult) {
-//         return false
-//     }
+export const findByPk = (id) => {
+  const query = 'SELECT * FROM Consulta WHERE id = $1';
+  const values = [id];
 
-//     const index = dbConsult.indexOf(consult)
-//     dbConsult.splice(index, 1)
-//     return true
-// }
+  return new Promise((resolve, reject) => {
+    pool.query(query, values, (err, result) => {
+      if (err) {
+        console.error('Erro ao executar a consulta:', err);
+        reject(err);
+      } else {
+        const consult = result.rows[0];
+        resolve(consult);
+      }
+    });
+  });
+};
 
-// export const findByPk = (id) => {
-//     return dbConsult.find(consult => consult.id === id)
-// }
+export const create = (consult) => {
+  const query = 'INSERT INTO Consulta (cliente/usuario, funcionario, data, observação) VALUES ($1, $2, $3, $4)';
+  const values = [consult.client, consult.employer, consult.date, consult.obs, id];
 
-// export const create = (consult) => {
-//     consult.id = dbConsult.length + 1
-//     dbConsult.push(consult)
-// }
+  pool.query(query, values, (err, result) => {
+    if (err) {
+      console.error('Erro ao executar a consulta:', err);
+    } else {
+      console.log('Consulta criada com sucesso');
+    }
+  });
+};
 
-// export const findAll = () => {
-//     return dbConsult
-// }
 
-// export const dbConsult = [
-//     new Consult(1, "Guilherme", "Maria", "2023-05-12", "Observações da consulta 1"),
-// ]
+export const findConsult = () => {
+  const query = 'SELECT * FROM Consulta';
+
+  pool.query(query, (err, result) => {
+    if (err) {
+      console.error('Erro ao executar a consulta:', err);
+    } else {
+      console.log('Consultas encontrados:');
+      return result.rows
+    }
+  });
+};
+
+export const dbConsult = [
+  new Consult( 'Guilherme', 'Joana', '07/08/2023','Banho/Tosa'),
+];
