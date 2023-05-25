@@ -74,14 +74,16 @@ export const create = (client) => {
 export const findClient = () => {
   const query = 'SELECT * FROM Usuario';
 
+  return new Promise((resolve, reject) => {
   pool.query(query, (err, result) => {
     if (err) {
       console.error('Erro ao executar a consulta:', err);
     } else {
       console.log('Clientes encontrados:');
-      return result.rows
+      resolve(result.rows)  
     }
   });
+})
 };
 
 

@@ -12,21 +12,34 @@ class EmployerController {
         return
       }
 
-      const employer = new Employer(name, email, phone, address, password, employerfunction)
+      const employer = new Employer(name, birth, phone, email, employerfunction)
       create(employer)
       res.json(employer)
   }
 
-  static getEmployerById(req, res) {
-    const id = parseInt(req.params.id)
-    const employer = findByPk(id)
-    res.json(employer)
+  static async getEmployerById(req, res) {
+    try {
+      const id = parseInt(req.params.id);
+      const employer = await findByPk(id);
+      res.json(employer);
+    } catch (error) {
+      res.status(500).json({ error: 'Erro ao buscar funcionário por ID' });
+    }
+  }
+
+  static async getEmployer(req, res) {
+    try {
+      const employers = await getEmployer();
+      res.json(employers);
+    } catch (error) {
+      res.status(500).json({ error: 'Erro ao buscar funcionários' });
+    }
   }
 
   static destroyEmployer(req, res) {
-    const id = parseInt(req.params.id)
-    destroy(id)
-    res.json({ message: 'Funcionário removido com sucesso' })
+    const id = parseInt(req.params.id);
+    destroy(id);
+    res.json({ message: 'Funcionario removido com sucesso' });
   }
 
 static updateEmployer(req, res) {
@@ -37,20 +50,19 @@ static updateEmployer(req, res) {
     return
   }
 
-  const {name, email, phone, adress, password, employerfunction} = req.body
-  if(!name || !email || !phone || !adress || !password || !employerfunction) {
-    res.status(400).json({error: 'Nome, email, telefone, endereço, senha e função são obrigatórios'})
+  const {name, birth, phone, email, employerfunction} = req.body
+  if(!name || !birth || !phone || !email || !employerfunction) {
+    res.status(400).json({error: 'Nome, nascimento, telefone, email e função são obrigatórios'})
     return
   }
 
   employer.name = name
-  employer.email = email
+  employer.birth = birth
   employer.phone = phone
-  employer.adress = adress
-  employer.password = password
+  employer.email = email
   employer.employerfunction = employerfunction
   update(id, employer);
-    res.json(employer);
+  res.json(employer);
 }  
 }
 

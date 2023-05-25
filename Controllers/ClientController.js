@@ -1,8 +1,14 @@
 import { Client, create, findByPk, findClient, update, destroy } from "../Models/Client.js";
 
 class ClientController {
-  static getClient(req, res) {
-    res.json(findClient());
+  static async getClient(req, res) {
+    try{
+    res.json (await findClient());
+    }
+    catch (error) {
+      res.status(500).json({ error: 'Erro ao buscar clientes' });
+    }
+
   }
 
   static createClient(req, res) {
@@ -17,10 +23,10 @@ class ClientController {
     res.json(client);
   }
 
-  static getClientById(req, res) {
+  static async getClientById(req, res) {
     const id = parseInt(req.params.id);
     const client = findByPk(id);
-    res.json(client);
+    res.json(await client);
   }
 
   static destroyClient(req, res) {
