@@ -10,7 +10,7 @@ export class Consult {
 }
 
 export const update = (id, consult) => {
-  const query = `UPDATE Consulta SET cliente/usuario = $1, funcionario = $2, data = $3, observação = $4 WHERE id = $6`;
+  const query = `UPDATE Consulta SET cliente/usuario = $1, funcionario = $2, data = $3, observação = $4 WHERE id = $5`;
   const values = [consult.client, consult.employer, consult.date, consult.obs, id];
 
   pool.query(query, values, (err, result) => {
