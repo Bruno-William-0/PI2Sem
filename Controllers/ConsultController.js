@@ -2,49 +2,91 @@ import { Consult, create, findByPk, findConsult, update, destroy } from "../Mode
 
 class ConsultController {
   static getConsult(req, res) {
-    res.json(findConsult());
+    findConsult()
+      .then((consults) => {
+        res.json(consults);
+      })
+      .catch((err) => {
+        res.status(500).json({ error: 'Erro ao obter as consultas.' });
+      });
   }
 
   static createConsult(req, res) {
-    const { client, employer, date, obs } = req.body;
-    if (!client || !employer || !date || !obs) {
-      res.status(400).json({ error: "Cliente, funcionario, data e observacao são obrigatórios!" });
+    const { pet, employer, date } = req.body;
+    if (!pet || !employer || !date) {
+      res.status(400).json({ error: "Pet, funcionário e data são obrigatórios!" });
       return;
     }
 
-    const consult = new Consult(client, employer, date, obs);
-    create(consult);
-    res.json(consult);
+    const consult = new Consult(pet, employer, date);
+    create(consult)
+      .then(() => {
+        res.json(consult);
+      })
+      .catch((err) => {
+        res.status(500).json({ error: 'Erro ao criar a consulta.' });
+      });
   }
 
   static getConsultById(req, res) {
     const id = parseInt(req.params.id);
-    const consult = findByPk(id);
-    res.json(consult);
+    findByPk(id)
+      .then((consult) => {
+        if (!consult) {
+          res.status(404).json({ error: 'Consulta não encontrada.' });
+        } else {
+          res.json(consult);
+        }
+      })
+      .catch((err) => {
+        res.status(500).json({ error: 'Erro ao obter a consulta.' });
+      });
   }
 
   static destroyConsult(req, res) {
     const id = parseInt(req.params.id);
-    destroy(id);
-    res.json({ message: 'Consulta removido com sucesso' });
+    destroy(id)
+      .then((success) => {
+        if (success) {
+          res.json({ message: 'Consulta removida com sucesso' });
+        } else {
+          res.status(404).json({ error: 'Consulta não encontrada.' });
+        }
+      })
+      .catch((err) => {
+        res.status(500).json({ error: 'Erro ao remover a consulta.' });
+      });
   }
 
   static updateConsult(req, res) {
     const id = parseInt(req.params.id);
-    const consult = findByPk(id)
-    const { client, employer, date, obs } = req.body;
-    if (!client || !employer || !date || !obs) {
-      res.status(400).json({ error: 'Cliente, funcionario, data e observacao são obrigatórios!' });
+    const { pet, employer, date } = req.body;
+    if (!pet || !employer || !date) {
+      res.status(400).json({ error: 'Pet, funcionário e data são obrigatórios!' });
       return;
     }
 
-    consult.client = client;
-    consult.employer = employer;
-    consult.date = date;
-    consult.obs = obs;
+    findByPk(id)
+      .then((consult) => {
+        if (!consult) {
+          res.status(404).json({ error: 'Consulta não encontrada.' });
+        } else {
+          consult.pet = pet;
+          consult.employer = employer;
+          consult.date = date;
 
-    update(id, consult);
-    res.json(consult);
+          update(id, consult)
+            .then(() => {
+              res.json(consult);
+            })
+            .catch((err) => {
+              res.status(500).json({ error: 'Erro ao atualizar a consulta.' });
+            });
+        }
+      })
+      .catch((err) => {
+        res.status(500).json({ error: 'Erro ao obter a consulta.' });
+      });
   }
 }
 

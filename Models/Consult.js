@@ -1,46 +1,49 @@
 import { pool } from "./DBCon.js";
 
 export class Consult {
-    constructor(client, employer, date, obs) {
-        this.client = client;
-        this.employer = employer;
-        this.date = date;
-        this.obs = obs;
-    }
+  constructor(pet, employer, date) {
+    this.pet = pet;
+    this.employer = employer;
+    this.date = date;
+  }
 }
 
 export const update = (id, consult) => {
-  const query = `UPDATE Consulta SET cliente/usuario = $1, funcionario = $2, data = $3, observação = $4 WHERE id = $5`;
-  const values = [consult.client, consult.employer, consult.date, consult.obs, id];
+  const query = `UPDATE servico_cuida SET fk_pet_id = $1, fk_funcionario_id = $2, data = $3 WHERE id = $4`;
+  const values = [consult.pet, consult.employer, consult.date, id];
 
-  pool.query(query, values, (err, result) => {
-    if (err) {
-      console.error('Erro ao executar a consulta:', err);
-      return false;
-    } else {
-      const rowsAffected = result.rowCount;
-      return rowsAffected > 0;
-    }
+  return new Promise((resolve, reject) => {
+    pool.query(query, values, (err, result) => {
+      if (err) {
+        console.error('Erro ao executar a consulta:', err);
+        reject(err);
+      } else {
+        const rowsAffected = result.rowCount;
+        resolve(rowsAffected > 0);
+      }
+    });
   });
 };
 
 export const destroy = (id) => {
-  const query = 'DELETE FROM Consulta WHERE id = $1';
+  const query = 'DELETE FROM servico_cuida WHERE id = $1';
   const values = [id];
 
-  pool.query(query, values, (err, result) => {
-    if (err) {
-      console.error('Erro ao executar a consulta:', err);
-      return false;
-    } else {
-      const rowsAffected = result.rowCount;
-      return rowsAffected > 0;
-    }
+  return new Promise((resolve, reject) => {
+    pool.query(query, values, (err, result) => {
+      if (err) {
+        console.error('Erro ao executar a consulta:', err);
+        reject(err);
+      } else {
+        const rowsAffected = result.rowCount;
+        resolve(rowsAffected > 0);
+      }
+    });
   });
 };
 
 export const findByPk = (id) => {
-  const query = 'SELECT * FROM Consulta WHERE id = $1';
+  const query = 'SELECT * FROM servico_cuida WHERE id = $1';
   const values = [id];
 
   return new Promise((resolve, reject) => {
@@ -57,32 +60,38 @@ export const findByPk = (id) => {
 };
 
 export const create = (consult) => {
-  const query = 'INSERT INTO Consulta (cliente/usuario, funcionario, data, observação) VALUES ($1, $2, $3, $4)';
-  const values = [consult.client, consult.employer, consult.date, consult.obs, id];
+  const query = 'INSERT INTO servico_cuida (fk_pet_id, fk_funcionario_id, data) VALUES ($1, $2, $3)';
+  const values = [consult.pet, consult.employer, consult.date];
 
-  pool.query(query, values, (err, result) => {
-    if (err) {
-      console.error('Erro ao executar a consulta:', err);
-    } else {
-      console.log('Consulta criada com sucesso');
-    }
+  return new Promise((resolve, reject) => {
+    pool.query(query, values, (err, result) => {
+      if (err) {
+        console.error('Erro ao executar a consulta:', err);
+        reject(err);
+      } else {
+        console.log('Consulta criada com sucesso');
+        resolve();
+      }
+    });
   });
 };
 
-
 export const findConsult = () => {
-  const query = 'SELECT * FROM Consulta';
+  const query = 'SELECT * FROM servico_cuida';
 
-  pool.query(query, (err, result) => {
-    if (err) {
-      console.error('Erro ao executar a consulta:', err);
-    } else {
-      console.log('Consultas encontrados:');
-      return result.rows
-    }
+  return new Promise((resolve, reject) => {
+    pool.query(query, (err, result) => {
+      if (err) {
+        console.error('Erro ao executar a consulta:', err);
+        reject(err);
+      } else {
+        console.log('Consultas encontradas:');
+        resolve(result.rows);
+      }
+    });
   });
 };
 
 export const dbConsult = [
-  new Consult( 'Guilherme', 'Joana', '07/08/2023','Banho/Tosa'),
+  new Consult('Guilherme', 'Joana', '07/08/2023'),
 ];

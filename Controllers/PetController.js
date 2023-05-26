@@ -1,54 +1,84 @@
 import { Pet, create, findByPk, findPet, update, destroy } from "../Models/Pet.js";
 
 class PetController {
-  static getPet(req, res) {
-    res.json(findPet());
+  static async getPet(req, res) {
+    try {
+      const pets = await findPet();
+      res.json(pets);
+    } catch (err) {
+      res.status(500).json({ error: 'Erro ao buscar os pets' });
+    }
   }
 
-  static createPet(req, res) {
-    const { name, speec, breed, age } = req.body;
-    if (!name || !speec || !breed || !age) {
-      res.status(400).json({ error: "Nome, pelo, raça e idade são obrigatórios!" });
+  static async createPet(req, res) {
+    const { name, birth, breed, speec, color, size } = req.body;
+    if (!name || !birth || !breed || !speec || !color || !size) {
+      res.status(400).json({ error: "Nome, data de nascimento, raça, pelo, cor e tamanho são obrigatórios!" });
       return;
     }
 
-    const pet = new Pet(name, speec, breed, age);
-    create(pet);
-    res.json(pet);
+    const pet = new Pet(name, birth, breed, speec, color, size);
+    try {
+      await create(pet);
+      res.json(pet);
+    } catch (err) {
+      res.status(500).json({ error: 'Erro ao criar o pet' });
+    }
   }
 
-  static getPetById(req, res) {
+  static async getPetById(req, res) {
     const id = parseInt(req.params.id);
-    const pet = findByPk(id);
-    res.json(pet);
+    try {
+      const pet = await findByPk(id);
+      if (pet) {
+        res.json(pet);
+      } else {
+        res.status(404).json({ error: 'Pet não encontrado' });
+      }
+    } catch (err) {
+      res.status(500).json({ error: 'Erro ao buscar o pet' });
+    }
   }
 
-  static destroyPet(req, res) {
+  static async destroyPet(req, res) {
     const id = parseInt(req.params.id);
-    destroy(id);
-    res.json({ message: 'Pet removido com sucesso' });
+    try {
+      await destroy(id);
+      res.json({ message: 'Pet removido com sucesso' });
+    } catch (err) {
+      res.status(500).json({ error: 'Erro ao remover o pet' });
+    }
   }
 
-  static updatePet(req, res) {
+  static async updatePet(req, res) {
     const id = parseInt(req.params.id);
-    const pet = findByPk(id);
-    const { name, speec, breed, age } = req.body;
-    if (!name || !speec || !breed || !age) {
-      res.status(400).json({ error: 'Nome, pelo, raça e idade são obrigatórios' });
+    const { name, birth, breed, speec, color, size } = req.body;
+    if (!name || !birth || !breed || !speec || !color || !size) {
+      res.status(400).json({ error: 'Nome, data de nascimento, raça, pelo, cor e tamanho são obrigatórios' });
       return;
     }
 
-    pet.name = name;
-    pet.speec = speec;
-    pet.breed = breed;
-    pet.age = age;
+    try {
+      const pet = await findByPk(id);
+      if (pet) {
+        pet.name = name;
+        pet.birth = birth;
+        pet.breed = breed;
+        pet.speec = speec;
+        pet.color = color;
+        pet.size = size;
 
-    update(id, pet);
-    res.json(pet);
+        await update(id, pet);
+        res.json(pet);
+      } else {
+        res.status(404).json({ error: 'Pet não encontrado' });
+      }
+    } catch (err) {
+      res.status(500).json({ error: 'Erro ao atualizar o pet' });
+    }
   }
 
   // ...
 }
-
 
 export default PetController;

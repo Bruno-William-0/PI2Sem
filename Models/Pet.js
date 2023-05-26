@@ -1,26 +1,30 @@
 import { pool } from "./DBCon.js";
 
 export class Pet {
-  constructor(name, speec, breed, age) {
+  constructor(name, birth, breed, speec, color, size) {
     this.name = name;
-    this.speec = speec;
+    this.birth = birth;
     this.breed = breed;
-    this.age = age;
+    this.speec = speec;
+    this.color = color;
+    this.size = size;
   }
 }
 
 export const update = (id, pet) => {
-  const query = `UPDATE Pet SET nome = $1, pelo = $2, raca = $3, idade = $4 WHERE id = $5`;
-  const values = [pet.name, pet.speec, pet.breed, pet.age, id];
+  const query = `UPDATE Pet SET nome = $1, nascimento = $2, raca = $3, especie = $4, cor = $5, tamanho = $6 WHERE id = $7`;
+  const values = [pet.name, pet.birth, pet.breed, pet.speec, pet.color, pet.size, id];
 
-  pool.query(query, values, (err, result) => {
-    if (err) {
-      console.error('Erro ao executar a consulta:', err);
-      return false;
-    } else {
-      const rowsAffected = result.rowCount;
-      return rowsAffected > 0;
-    }
+  return new Promise((resolve, reject) => {
+    pool.query(query, values, (err, result) => {
+      if (err) {
+        console.error('Erro ao executar a consulta:', err);
+        reject(err);
+      } else {
+        const rowsAffected = result.rowCount;
+        resolve(rowsAffected > 0);
+      }
+    });
   });
 };
 
@@ -28,14 +32,16 @@ export const destroy = (id) => {
   const query = 'DELETE FROM Pet WHERE id = $1';
   const values = [id];
 
-  pool.query(query, values, (err, result) => {
-    if (err) {
-      console.error('Erro ao executar a consulta:', err);
-      return false;
-    } else {
-      const rowsAffected = result.rowCount;
-      return rowsAffected > 0;
-    }
+  return new Promise((resolve, reject) => {
+    pool.query(query, values, (err, result) => {
+      if (err) {
+        console.error('Erro ao executar a consulta:', err);
+        reject(err);
+      } else {
+        const rowsAffected = result.rowCount;
+        resolve(rowsAffected > 0);
+      }
+    });
   });
 };
 
@@ -57,33 +63,38 @@ export const findByPk = (id) => {
 };
 
 export const create = (pet) => {
-  const query = 'INSERT INTO Pet (nome, speec, breed, age) VALUES ($1, $2, $3, $4)';
-  const values = [pet.name, pet.speec, pet.breed, pet.age];
+  const query = 'INSERT INTO Pet (nome, nascimento, raca, especie, cor, tamanho) VALUES ($1, $2, $3, $4, $5, $6)';
+  const values = [pet.name, pet.birth, pet.breed, pet.speec, pet.color, pet.size];
 
-  pool.query(query, values, (err, result) => {
-    if (err) {
-      console.error('Erro ao executar a consulta:', err);
-    } else {
-      console.log('Pet criado com sucesso');
-    }
+  return new Promise((resolve, reject) => {
+    pool.query(query, values, (err, result) => {
+      if (err) {
+        console.error('Erro ao executar a consulta:', err);
+        reject(err);
+      } else {
+        console.log('Pet criado com sucesso');
+        resolve();
+      }
+    });
   });
 };
-
 
 export const findPet = () => {
   const query = 'SELECT * FROM Pet';
 
-  pool.query(query, (err, result) => {
-    if (err) {
-      console.error('Erro ao executar a consulta:', err);
-    } else {
-      console.log('Pets encontrados:');
-      return result.rows
-    }
+  return new Promise((resolve, reject) => {
+    pool.query(query, (err, result) => {
+      if (err) {
+        console.error('Erro ao executar a consulta:', err);
+        reject(err);
+      } else {
+        console.log('Pets encontrados:');
+        resolve(result.rows);
+      }
+    });
   });
 };
 
-
 export const dbClient = [
-  new Pet( 'Jubileu', 'Pelo curto', 'Xiuaua sla','52 anos'),
+  new Pet('Jubileu', '2020-01-01', 'Poodle', 'Cachorro', 'Branco', 'Pequeno'),
 ];

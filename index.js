@@ -6,12 +6,9 @@ import ClientRouter from './Routes/ClientRoute.js';
 import ConsultRouter from './Routes/ConsultRoute.js'
 import EmployerRouter from './Routes/EmployerRoute.js'
 import PetRouter from './Routes/PetRoute.js';
-import db from './db.js'
 
 const app = express();
 app.use(express.json());
-
-db.sync(()=>console.log('Banco de dados preparado'))
 
 app.use('/client', ClientRouter)
 app.use('/consult', ConsultRouter)
