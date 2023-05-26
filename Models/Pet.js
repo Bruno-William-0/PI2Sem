@@ -18,8 +18,7 @@ export const update = (id, pet) => {
   return new Promise((resolve, reject) => {
     pool.query(query, values, (err, result) => {
       if (err) {
-        console.error('Erro ao executar a consulta:', err);
-        reject(err);
+        reject(console.error('Erro ao executar a consulta:', err));
       } else {
         const rowsAffected = result.rowCount;
         resolve(rowsAffected > 0);
@@ -35,8 +34,7 @@ export const destroy = (id) => {
   return new Promise((resolve, reject) => {
     pool.query(query, values, (err, result) => {
       if (err) {
-        console.error('Erro ao executar a consulta:', err);
-        reject(err);
+        reject(console.error('Erro ao executar a consulta:', err));
       } else {
         const rowsAffected = result.rowCount;
         resolve(rowsAffected > 0);
@@ -52,8 +50,7 @@ export const findByPk = (id) => {
   return new Promise((resolve, reject) => {
     pool.query(query, values, (err, result) => {
       if (err) {
-        console.error('Erro ao executar a consulta:', err);
-        reject(err);
+        reject(console.error('Erro ao executar a consulta:', err));
       } else {
         const pet = result.rows[0];
         resolve(pet);
@@ -69,8 +66,7 @@ export const create = (pet) => {
   return new Promise((resolve, reject) => {
     pool.query(query, values, (err, result) => {
       if (err) {
-        console.error('Erro ao executar a consulta:', err);
-        reject(err);
+        reject(console.error('Erro ao executar a consulta:', err));
       } else {
         console.log('Pet criado com sucesso');
         resolve();
@@ -85,8 +81,7 @@ export const findPet = () => {
   return new Promise((resolve, reject) => {
     pool.query(query, (err, result) => {
       if (err) {
-        console.error('Erro ao executar a consulta:', err);
-        reject(err);
+        reject(console.error('Erro ao executar a consulta:', err));
       } else {
         console.log('Pets encontrados:');
         resolve(result.rows);

@@ -16,7 +16,7 @@ export const update = (id, consult) => {
     pool.query(query, values, (err, result) => {
       if (err) {
         console.error('Erro ao executar a consulta:', err);
-        reject(err);
+        reject(console.error);
       } else {
         const rowsAffected = result.rowCount;
         resolve(rowsAffected > 0);
@@ -33,7 +33,7 @@ export const destroy = (id) => {
     pool.query(query, values, (err, result) => {
       if (err) {
         console.error('Erro ao executar a consulta:', err);
-        reject(err);
+        reject(console.error);
       } else {
         const rowsAffected = result.rowCount;
         resolve(rowsAffected > 0);
@@ -50,7 +50,7 @@ export const findByPk = (id) => {
     pool.query(query, values, (err, result) => {
       if (err) {
         console.error('Erro ao executar a consulta:', err);
-        reject(err);
+        reject(console.error);
       } else {
         const consult = result.rows[0];
         resolve(consult);
@@ -67,7 +67,7 @@ export const create = (consult) => {
     pool.query(query, values, (err, result) => {
       if (err) {
         console.error('Erro ao executar a consulta:', err);
-        reject(err);
+        reject(console.error);
       } else {
         console.log('Consulta criada com sucesso');
         resolve();
@@ -83,7 +83,7 @@ export const findConsult = () => {
     pool.query(query, (err, result) => {
       if (err) {
         console.error('Erro ao executar a consulta:', err);
-        reject(err);
+        reject(console.error);
       } else {
         console.log('Consultas encontradas:');
         resolve(result.rows);
