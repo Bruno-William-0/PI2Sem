@@ -80,6 +80,13 @@ h1 {
   input
   {
     display: block;
+    border-radius: 10px;
+    width: 300pt;
+    height: 25pt;
+  }
+  .btn-login
+  {
+    margin-top: 20pt; 
   }
   #form
   {
