@@ -1,4 +1,4 @@
-
+import cors from 'cors'
 import express from 'express'
 import ClientRouter from './Routes/ClientRoute.js';
 // import ConsultController from './Controllers/ConsultController.js';
