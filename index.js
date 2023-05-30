@@ -8,13 +8,13 @@
     import EmployerRouter from './Routes/EmployerRoute.js'
     import PetRouter from './Routes/PetRoute.js';
 
+   
+    const app = express();
+    app.use(express.json());
     app.use(cors({
         origin: '*',
       }));
       
-    const app = express();
-    app.use(express.json());
-
     app.use('/client', ClientRouter)
     app.use('/consult', ConsultRouter)
     app.use('/employer', EmployerRouter)
