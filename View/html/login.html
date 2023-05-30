@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/logincliente.css">
+    <script src="login.js"></script>
     <title>Login</title>
 </head>
 <body>
@@ -26,10 +27,10 @@
         <div id="form">
         <form>
             <label>E-Mail</label>
-            <input type="email" placeholder="Insira Seu E-mail"></input>
+            <input type="email" id="email" placeholder="Insira Seu E-mail"></input>
             <label>Senha</label>
-            <input type="password" placeholder="Insira Sua Senha"></input>
-            <input class="btn-login" type="submit" value="LOGIN"></input>
+            <input type="password" id="senha" placeholder="Insira Sua Senha"></input>
+            <input name="btn" class="btn-login" type="button" onclick="login()" value="LOGIN"></input>
 
             <a href="cadastrocliente.html" class="link-cadastro"> 
                 Não tem um conta? Cadastre-Se

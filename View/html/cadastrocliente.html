@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/cadastrocliente.css">
+    <script src="login.js"></script>
     <title>Cadastro Cliente</title>
 </head>
 <body>
@@ -24,19 +25,18 @@
     
       <div>
         <div id="form">
-        <form>
+          <form>
             <label>Nome</label>
-            <input type="Name" placeholder="Insira Seu Nome"></input>
+            <input name="nome" type="Name" placeholder="Insira o Nome"></input>
             <label>E-Mail</label>
-            <input type="email" placeholder="Insira Seu E-mail"></input>
+            <input name="cemail" type="email" placeholder="Insira o E-mail"></input>
             <label>Telefone</label>
-            <input type="tel" placeholder="Insira Seu Telefone"></input>
-            <label>Endererço</label>
-            <input type="text" placeholder="Insira Seu Telefone"></input>
+            <input type="Text" name="telefone" placeholder="Insira o seu Telefone"></input>
+            <label>Endereço</label>
+            <input type="Text" name="endereco" placeholder="Insira o Endereço"></input>
             <label>Senha</label>
-            <input type="password" placeholder="Insira Sua Senha"></input>
-            <input name="btn-cadastrar" class="btn-cadastrar" type="submit" value="CADASTRAR"></input>
-
+            <input type="password" name="csenha" placeholder="Insira sua senha"></input>
+            <input type="button" value="CADASTRAR" onclick="cadastrarUsuario()" class="btn-cadastrar"></input> 
         </form>
         </div>
       </div>
