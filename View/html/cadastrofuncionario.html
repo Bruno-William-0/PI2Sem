@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/cadastrocliente.css">
     <script src="crudfuncionario.js"></script>
-    <title>Cadastro Cliente</title>
+    <title>Cadastro Funcionários</title>
 </head>
 <body>
     <header>
@@ -27,14 +27,20 @@
         <div id="form">
         <form>
             <label>Nome</label>
-            <input type="Name" placeholder="Insira o Nome"></input>
+            <input type="Name" placeholder="Insira o Nome" name="nomef"></input>
             <label>Data de Nascimento</label>
-            <input placeholder="dd/mm/yy" type="date" max="2003-01-01"></input>
+            <input placeholder="dd/mm/yy" type="date" max="2003-01-01" name="dataf"></input>
             <label>Telefone</label>
-            <input type="Text"></input>
+            <input type="Text" name="telf"></input>
             <label>E-Mail</label>
-            <input type="email" placeholder="Insira o E-mail"></input>
-            <input type="submit" value="CADASTRAR" onclick=""></input> 
+            <input type="email" placeholder="Insira o E-mail" name="emailf"></input>
+            <label>Função</label>
+            <select name="funcaof">
+              <option disabled selected hidden>Selecione uma opção</option>
+              <option value="Banho">Banho</option>
+              <option value="Tosar">Tosa</option>
+            </select>
+            <input type="button" value="CADASTRAR" onclick="cadastrarFuncionario() "></input> 
         </form>
         </div>
       </div>

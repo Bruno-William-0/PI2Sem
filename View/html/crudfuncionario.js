@@ -1,14 +1,14 @@
 function cadastrarFuncionario() {
     const funcionario = {
-      name: document.getElementsByName('nome')[0].value,
-      birth: document.getElementsByName('nascimento')[0].value,
-      phone: document.getElementsByName('telefone')[0].value,
-      email: document.getElementsByName('email')[0].value,
-      employerfunction: document.getElementsByName('funcao')[0].value
+      name: document.getElementsByName('nomef')[0].value,
+      birth: document.getElementsByName('dataf')[0].value,
+      phone: document.getElementsByName('telf')[0].value,
+      email: document.getElementsByName('emailf')[0].value,
+      employerfunction: document.getElementsByName('funcaof')[0].value
     };
   
     const paragrafo = document.createElement('p');
-    paragrafo.innerText = JSON.stringify(funcionario);
+    paragrafo.innerText = JSON.stringify(funcionario);  
   
     document.body.appendChild(paragrafo);
   
@@ -28,7 +28,8 @@ function cadastrarFuncionario() {
       });
   }
 
-  function listareexcluir(){
+  function listareexcluir()
+  {
   fetch('https://api-pets.onrender.com/employer')
   .then(response => response.json())
   .then(funcionarios => {
