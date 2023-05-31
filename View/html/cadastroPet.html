@@ -1,15 +1,17 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro Pet</title>
 </head>
+
 <body>
     <div id="form">
         <form>
-            <label  for="nomePet">Nome do pet:</label>
+            <label for="nomePet">Nome do pet:</label>
             <input type="Name" placeholder="Nome do pet" name="nomePet"></input><br>
             <label for="dataPet">Data de nascimento do pet:</label>
             <input placeholder="dd/mm/yy" type="date" max="2003-01-01" name="dataPet"></input><br>
@@ -19,14 +21,17 @@
             <input type="Text" placeholder="Tipo de pelo do pet" name="pelo"></input><br>
             <label for="cor">Cor:</label>
             <input type="Text" placeholder="Cor do pelo do pet" name="cor"></input><br>
-            <select name="funcaoPet">
-              <option disabled selected hidden>Tamanho</option>
-              <option value="Pequeno">Pequeno</option>
-              <option value="Médio">Médio</option>
-              <option value="Grande">Grande</option>
+            <select name="tamanhoPet">
+                <option disabled selected hidden>Tamanho</option>
+                <option value="Pequeno">Pequeno</option>
+                <option value="Médio">Médio</option>
+                <option value="Grande">Grande</option>
             </select><br>
-            <input type="button" value="CADASTRAR" onclick="cadastrarPet() "></input> 
+            <input type="button" value="CADASTRAR" onclick="cadastrarPet() "></input>
         </form>
-        </div>
+    </div>
+
+    <script src="../js/crudPet.js"></script>
 </body>
+
 </html>
