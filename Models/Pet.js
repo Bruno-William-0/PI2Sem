@@ -10,8 +10,9 @@ this.color = color;
 this.size = size;
 this.owner = owner;
 }
+}
 
-update(id) {
+export const update = (id) => {
 const query = "UPDATE Pet SET nome = $1, nascimento = $2, raca = $3, especie = $4, cor = $5, porte = $6, fk_usuario_id = $7 WHERE id = $8";
 const values = [this.name, this.birth, this.breed, this.speec, this.color, this.size, this.owner, id];
 
@@ -28,7 +29,7 @@ return new Promise((resolve, reject) => {
 
 }
 
-destroy(id) {
+export const destroy = (id) => {
 const query = 'DELETE FROM Pet WHERE id = $1';
 const values = [id];
 
@@ -45,13 +46,8 @@ return new Promise((resolve, reject) => {
 
 }
 
-destroy(id) {
-const query = 'DELETE FROM Pet WHERE id = $1';
-const values = [id];
 
-}
-
-static findByPk(id) {
+export const findByPk = (id) => {
 const query = 'SELECT * FROM Pet WHERE id = $1';
 const values = [id];
 
@@ -68,7 +64,7 @@ return new Promise((resolve, reject) => {
 
 }
 
-static create(pet) {
+export const create = (pet) => {
 const query = 'INSERT INTO Pet (nome, nascimento, raca, especie, cor, porte, fk_usuario_id) VALUES ($1, $2, $3, $4, $5, $6, $7)';
 const values = [pet.name, pet.birth, pet.breed, pet.speec, pet.color, pet.size, pet.owner];
 
@@ -85,7 +81,7 @@ return new Promise((resolve, reject) => {
 
 }
 
-static findPet() {
+export const findPet = () => {
 const query = 'SELECT * FROM Pet';
 
 return new Promise((resolve, reject) => {
@@ -100,7 +96,7 @@ return new Promise((resolve, reject) => {
 });
 
 }
-}
+
 
 export const dbClient = [
 new Pet('Jubileu', '2020-01-01', 'Poodle', 'Cachorro', 'Branco', 'Pequeno', 'João'),
