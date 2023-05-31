@@ -67,3 +67,4 @@ static updateEmployer(req, res) {
 }
 
 export default EmployerController
+  
