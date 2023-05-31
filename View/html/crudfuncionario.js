@@ -42,6 +42,12 @@ function cadastrarFuncionario() {
     colunaId.innerText = 'ID';
     const colunaNome = linhaCabecalho.insertCell();
     colunaNome.innerText = 'Nome';
+    const colunaNascimento = linhaCabecalho.insertCell();
+    colunaNascimento.innerText = 'Nascimento';
+    const colunaTelefone = linhaCabecalho.insertCell();
+    colunaTelefone = "Telefone";
+    const colunaEmail = linhaCabecalho.insertCell();
+    colunaEmail.innerText = 'E-mail';
     const colunaFuncao = linhaCabecalho.insertCell();
     colunaFuncao.innerText = 'Função';
     const colunaAcoes = linhaCabecalho.insertCell();
@@ -58,6 +64,12 @@ function cadastrarFuncionario() {
       colunaId.innerText = funcionario.id;
       const colunaNome = linha.insertCell();
       colunaNome.innerText = funcionario.name;
+      const colunaNascimento = linha.insertCell();
+      colunaNascimento.innerText = funcionario.nascimento;
+      const colunaTelefone = linha.insertCell();
+      colunaTelefone.innerText = funcionario.telefone;
+      const colunaEmail = linha.insertCell();
+      colunaEmail.innerText = funcionario.email;
       const colunaFuncao = linha.insertCell();
       colunaFuncao.innerText = funcionario.employerfunction;
       const colunaAcoes = linha.insertCell();
