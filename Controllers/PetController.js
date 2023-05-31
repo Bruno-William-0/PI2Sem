@@ -11,13 +11,13 @@ class PetController {
   }
 
   static async createPet(req, res) {
-    const { name, birth, breed, speec, color, size } = req.body;
-    if (!name || !birth || !breed || !speec || !color || !size) {
+    const { name, birth, hair, breed, speec, color, size, owner} = req.body;
+    if (!name || !birth || !owner || !breed || !speec || !color || !size || !owner) {
       res.status(400).json({ error: "Nome, data de nascimento, raça, pelo, cor e tamanho são obrigatórios!" });
       return;
     }
 
-    const pet = new Pet(name, birth, breed, speec, color, size);
+    const pet = new Pet(name, birth, hair, breed, speec, color, size, owner);
     try {
       await create(pet);
       res.json(pet);
@@ -52,8 +52,8 @@ class PetController {
 
   static async updatePet(req, res) {
     const id = parseInt(req.params.id);
-    const { name, birth, breed, speec, color, size } = req.body;
-    if (!name || !birth || !breed || !speec || !color || !size) {
+    const { name, birth, hair, breed, speec, color, size, owner} = req.body;
+    if (!name || !birth || !owner || !breed || !speec || !color || !size || !owner) {
       res.status(400).json({ error: 'Nome, data de nascimento, raça, pelo, cor e tamanho são obrigatórios' });
       return;
     }
@@ -63,10 +63,12 @@ class PetController {
       if (pet) {
         pet.name = name;
         pet.birth = birth;
+        pet.hair = hair;
         pet.breed = breed;
         pet.speec = speec;
         pet.color = color;
         pet.size = size;
+        pet.owner = owner;
 
         await update(id, pet);
         res.json(pet);
