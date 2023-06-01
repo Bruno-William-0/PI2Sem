@@ -13,7 +13,7 @@ function cadastrarPet() {
 
     document.body.appendChild(paragrafo);
 
-    fetch('https://api-pets.onrender.com/employer', {
+    fetch('https://api-pets.onrender.com/pet', {
     method: 'POST',
     headers: {
         'Content-Type': 'application/json'
@@ -22,15 +22,15 @@ function cadastrarPet() {
     })
     .then(response => response.json())
     .then(data => {
-        console.log('Funcionário cadastrado com sucesso:', data);
+        console.log('Pet cadastrado com sucesso:', data);
     })
     .catch(error => {
-        console.error('Erro ao cadastrar funcionário:', error);
+        console.error('Erro ao cadastrar Pet:', error);
     });
 }
 
 function listareexcluir() {
-    fetch('https://api-pets.onrender.com/employer')
+    fetch('https://api-pets.onrender.com/pet')
       .then(response => response.json())
       .then(pets => {
         const tabela = document.createElement('table');
@@ -89,7 +89,7 @@ function listareexcluir() {
           const botaoExcluir = document.createElement('button');
           botaoExcluir.classList.add('delete-button');
           botaoExcluir.addEventListener('click', () => {
-            fetch(`https://api-pets.onrender.com/employer/${pet.id}`, {
+            fetch(`https://api-pets.onrender.com/pet/${pet.id}`, {
               method: 'DELETE'
             })
               .then(response => response.json())
