@@ -1,48 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/cadastrofuncionario.css">
-    <script src="../js/crudfuncionario.js"></script>
-    <title>Cadastro Funcionários</title>
-</head>
-<body>
-    <header>
-        <nav>
-          <ul>
-        
-            <li><a href="banhoTosa.html">Banho e Tosa - Madame Pet</a></li>
 
-          </ul>
-    
-          <hr>
-        </nav>
-    
-        <h1>CADASTRO FUNCIONÁRIO</h1>
-      </header>
-    
-      <div>
-        <div id="form">
-        <form>
-            <label>Nome</label>
-            <input type="Name" placeholder="Insira o Nome" name="nomef"></input>
-            <label>Data de Nascimento</label>
-            <input placeholder="dd/mm/yy" type="date" max="2003-01-01" name="dataf"></input>
-            <label>Telefone</label>
-            <input type="Text" name="telf"></input>
-            <label>E-Mail</label>
-            <input type="email" placeholder="Insira o E-mail" name="emailf"></input>
-            <label>Função</label>
-            <select name="funcaof">
-              <option disabled selected hidden>Selecione uma opção</option>
-              <option value="Banho">Banho</option>
-              <option value="Tosar">Tosa</option>
-            </select>
-            <input type="button" value="CADASTRAR" onclick="cadastrarFuncionario() "></input> 
-        </form>
-        </div>
-      </div>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../css/cadastrofuncionario.css">
+  <script src="../js/crudfuncionario.js"></script>
+  <title>Cadastro Funcionários</title>
+</head>
+
+<body>
+  <header>
+    <nav>
+      <ul>
+
+        <li><a href="banhoTosa.html">Banho e Tosa - Madame Pet</a></li>
+
+      </ul>
+
+      <hr>
+    </nav>
+
+    <h1>CADASTRO FUNCIONÁRIO</h1>
+  </header>
+
+  <div>
+    <div id="form">
+      <form>
+        <label>Nome</label>
+        <input type="Name" placeholder="Insira o Nome" name="nomef"></input>
+        <label>Data de Nascimento</label>
+        <input placeholder="dd/mm/yy" type="date" max="2003-01-01" name="dataf"></input>
+        <label>Telefone</label>
+        <input type="Text" name="telf"></input>
+        <label>E-Mail</label>
+        <input type="email" placeholder="Insira o E-mail" name="emailf"></input>
+        <label>Função</label>
+        <select name="funcaof">
+          <option disabled selected hidden>Selecione uma opção</option>
+          <option value="Banho">Banho</option>
+          <option value="Tosar">Tosa</option>
+        </select>
+        <input type="button" value="CADASTRAR" onclick="cadastrarFuncionario() "></input>
+      </form>
+    </div>
+  </div>
 </body>
+
 </html>

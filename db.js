@@ -1,5 +1,5 @@
 import { Sequelize } from "sequelize" // npm i sequelize sqlite3
- 
+
 const db = new Sequelize(
     "database",
     "user",
@@ -9,5 +9,5 @@ const db = new Sequelize(
         storage: './db.sqlite'
     }
 )
- 
+
 export default db

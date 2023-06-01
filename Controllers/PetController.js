@@ -13,7 +13,7 @@ class PetController {
   static async createPet(req, res) {
     const { name, birth, hair, breed, speec, color, size, owner} = req.body;
     if (!name || !birth || !hair || !owner || !breed || !speec || !color || !size) {
-      res.status(400).json({ error: "Nome, data de nascimento, raça, pelo, cor, tamanho e dono são obrigatórios!" });
+      res.status(400).json({ error: "Nome, data de nascimento, raça, pelo, espécie, cor, tamanho e dono são obrigatórios!" });
       return;
     }
 

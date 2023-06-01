@@ -2,8 +2,8 @@ import { Client, create, findByPk, findClient, update, destroy } from "../Models
 
 class ClientController {
   static async getClient(req, res) {
-    try{
-    res.json (await findClient());
+    try {
+      res.json(await findClient());
     }
     catch (error) {
       res.status(500).json({ error: 'Erro ao buscar clientes' });
