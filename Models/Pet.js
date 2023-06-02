@@ -100,10 +100,10 @@ export const findPet = () => {
 
 export const findPetByOwner = (owner) => {
   const query = 'SELECT * FROM Pet where fk_usuario_id = $1';
-  const values = [pet.owner]
+  const values = [owner]
 
   return new Promise((resolve, reject) => {
-    pool.query(query, (err, result) => {
+    pool.query(query, values, (err, result) => {
       if (err) {
         reject(console.error('Erro ao executar a consulta:', err));
       } else {
