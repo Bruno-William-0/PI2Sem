@@ -108,7 +108,7 @@ export const findPetByOwner = (owner) => {
         reject(console.error('Erro ao executar a consulta:', err));
       } else {
         console.log('Pets encontrados:');
-        resolve(result.rows[0]);
+        resolve(result.rows);
       }
     });
   });
