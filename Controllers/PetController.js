@@ -41,9 +41,9 @@ class PetController {
   }
 
   static async getPetByOwner(req, res) {
-    const id = parseInt(req.params.id);
+    const id = parseInt(req.params.owner);
     try {
-      const pet = await findByPk(id);
+      const pet = await findByPk(owner);
       if (pet) {
         res.json(pet);
       } else {
