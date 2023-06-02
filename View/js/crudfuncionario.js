@@ -110,6 +110,20 @@ function listareexcluir() {
       });
 
       document.body.appendChild(tabela);
+      const cookies = document.cookie.split(';');
+let loginData = null;
+
+cookies.forEach(cookie => {
+  const [key, value] = cookie.trim().split('=');
+  if (key === 'login') {
+    loginData = JSON.parse(value);
+  }
+});
+
+console.log(loginData);
+
+
+
     })
     .catch(error => {
       console.error('Erro ao obter a lista de funcionários:', error);
