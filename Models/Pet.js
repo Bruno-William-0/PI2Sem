@@ -98,6 +98,23 @@ export const findPet = () => {
 
 }
 
+export const findPetByOwner = (owner) => {
+  const query = 'SELECT * FROM Pet where fk_usuário_id = $1';
+  const values = [owner]
+
+  return new Promise((resolve, reject) => {
+    pool.query(query, (err, result) => {
+      if (err) {
+        reject(console.error('Erro ao executar a consulta:', err));
+      } else {
+        console.log('Pets encontrados:');
+        resolve(result.rows);
+      }
+    });
+  });
+
+}
+
 
 export const dbClient = [
   new Pet('Jubileu', '2020-01-01', 'Poodle', 'Cachorro', 'Branco', 'Pequeno', 'João'),

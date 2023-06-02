@@ -1,12 +1,13 @@
 function cadastrarPet() {
     const pet = {
         name: document.getElementsByName('nomePet')[0].value,
-        especie: document.getElementsByName('especie')[0].value,
-        nascimento: document.getElementsByName('dataPet')[0].value,
-        raca: document.getElementsByName('raca')[0].value,
-        pelo: document.getElementsByName('pelo')[0].value,
-        cor: document.getElementsByName('cor')[0].value,
-        tamanho: document.getElementsByName('tamanhoPet')[0].value
+        speec: document.getElementsByName('especie')[0].value,
+        birth: document.getElementsByName('dataPet')[0].value,
+        breed: document.getElementsByName('raca')[0].value,
+        hair: document.getElementsByName('pelo')[0].value,
+        color: document.getElementsByName('cor')[0].value,
+        size: document.getElementsByName('tamanhoPet')[0].value,
+        owner: localStorage.getItem('id')
     };
 
     const paragrafo = document.createElement('p');

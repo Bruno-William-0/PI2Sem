@@ -1,39 +1,56 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastro Pet</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../css/cadastropets.css">
+  <script src="../js/crudPet.js"></script>
+  <title>Cadastro Pets</title>
 </head>
 
 <body>
-    <div id="form">
-        <form>
-            <label for="nomePet">Nome do pet:</label>
-            <input type="Name" placeholder="Nome do pet" name="nomePet"></input><br>
-            <label for="especie">Espécie:</label>
-            <input type="Text" placeholder="Espécie do pet" name="especie"></input><br>
-            <label for="dataPet">Data de nascimento do pet:</label>
-            <input placeholder="dd/mm/yy" type="date" name="dataPet"></input><br>
-            <label for="raca">Raça:</label>
-            <input type="Text" placeholder="Raça do pet" name="raca"></input><br>
-            <label for="pelo">Pelo:</label>
-            <input type="Text" placeholder="Tipo de pelo do pet" name="pelo"></input><br>
-            <label for="cor">Cor:</label>
-            <input type="Text" placeholder="Cor do pelo do pet" name="cor"></input><br>
-            <select name="tamanhoPet">
-                <option disabled selected hidden>Tamanho</option>
-                <option value="Pequeno">Pequeno</option>
-                <option value="Médio">Médio</option>
-                <option value="Grande">Grande</option>
-            </select><br>
-            <input type="button" value="CADASTRAR" onclick="cadastrarPet() "></input>
-        </form>
-    </div>
+  <header>
+    <nav>
+      <ul>
 
-    <script src="../js/crudPet.js"></script>
+        <li><a href="banhoTosa.html">Banho e Tosa - Madame Pet</a></li>
+
+      </ul>
+
+      <hr>
+    </nav>
+
+    <h1>CADASTRO PETS</h1>
+  </header>
+
+  <div>
+    <div id="form">
+      <form>
+        <label>Nome</label>
+        <input type="Name" placeholder="Insira o Nome" name="nomePet"></input>
+        <label>Especie</label>
+        <input type="Text" name="especie"></input>
+        <label>Data de Nascimento</label>
+        <input placeholder="dd/mm/yy" type="date" max="2003-01-01" name="dataPet"></input>
+        <label>Raça</label>
+        <input type="Text" placeholder="Insira a raça" name="raca"></input>
+        <label>Pelo</label>
+        <input type="Text" placeholder="Insira informações do pelo" name="pelo"></input>
+        <label>Cor</label>
+        <input type="Text" placeholder="Insira a cor" name="cor"></input>
+        <label>Função</label>
+        <select name="tamanhoPet">
+          <option disabled selected hidden>Selecione o porte</option>
+          <option value="Pequeno">Pequeno</option>
+          <option value="Médio">Médio</option>
+          <option value="Médio">Grande</option>
+        </select>
+        <input type="button" value="CADASTRAR" onclick="cadastrarPet()"></input>
+      </form>
+    </div>
+  </div>
 </body>
 
 </html>

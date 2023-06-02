@@ -12,15 +12,20 @@ function login() {
       let loginSucesso = false;
 
       clientes.forEach(cliente => {
-        if (cliente.email === email) {
-          if (cliente.senha === senha) {
+        if (cliente.email === email || cliente.email === localStorage.getItem('email') ) {
+          console.log("sucesso")
+
+          if (cliente.senha === senha || cliente.senha === localStorage.getItem('senha')) {
+            console.log("senha certa")
             // Login bem-sucedido
             const nome = cliente.nome;
+            localStorage.setItem('id', cliente.id);
+            localStorage.setItem('email', cliente.email);
+            localStorage.setItem('senha', cliente.senha);
 
-            const paragrafo = document.createElement('p');
-            paragrafo.innerText = `Nome: ${nome}`;
+            
 
-            document.body.appendChild(paragrafo);
+            //document.body.appendChild(paragrafo);
 
             // Redirecionar para a página de agendamentos
             window.location.href = 'pagina_agendamentos.html';
