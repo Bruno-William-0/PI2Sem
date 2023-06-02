@@ -41,16 +41,12 @@ class PetController {
   }
 
   static async getPetByOwner(req, res) {
-    const id = parseInt(req.params.owner);
+    const owner = parseInt(req.params.owner);
     try {
-      const pet = await findByPk(owner);
-      if (pet) {
-        res.json(pet);
-      } else {
-        res.status(404).json({ error: 'Pet não encontrado' });
-      }
+      const pets = await findPetsByOwner(owner);
+      res.json(pets);
     } catch (err) {
-      res.status(500).json({ error: 'Erro ao buscar o pet' });
+      res.status(500).json({ error: 'Erro ao buscar os pets do proprietário' });
     }
   }
 
