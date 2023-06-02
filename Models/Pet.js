@@ -99,7 +99,7 @@ export const findPet = () => {
 }
 
 export const findPetByOwner = (owner) => {
-  const query = 'SELECT * FROM Pet where fk_usuário_id = $1';
+  const query = 'SELECT * FROM Pet where fk_usuario_id = $1';
   const values = [owner]
 
   return new Promise((resolve, reject) => {
