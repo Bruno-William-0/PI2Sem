@@ -43,7 +43,7 @@ class PetController {
   static async getPetByOwner(req, res) {
     const owner = parseInt(req.params.owner);
     try {
-      const pets = await findPetsByOwner(owner);
+      const pets = await findPetsByPk(owner);
       res.json(pets);
     } catch (err) {
       res.status(500).json({ error: 'Erro ao buscar os pets do proprietário' });

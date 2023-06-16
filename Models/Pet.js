@@ -82,9 +82,9 @@ export const create = (pet) => {
 
 }
 
-export const findPetByOwner = (owner) => {
+export const findPetByPk = (id) => {
   const query = 'SELECT * FROM Pet WHERE fk_usuario_id = $1';
-  const values = [owner];
+  const values = [id];  
 
   return new Promise((resolve, reject) => {
     pool.query(query, values, (err, result) => {
